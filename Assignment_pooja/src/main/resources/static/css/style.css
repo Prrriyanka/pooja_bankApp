@@ -1,0 +1,34 @@
+  .custom-bg {
+    background-color: #9acfe1; /* Your desired background color */
+    
+    }
+    
+     .custom-container {
+	margin-top: 20%;
+	margin-left: 10%;
+	margin-right: 10%;
+    background-color: #a1ac8b; /* Blue background color */
+    border-radius: 15px; /* Rounded edges */
+    padding: 20px; /* Padding inside the container */
+  }
+  
+   .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            background-color: #9acfe1;
+           
+        }
+        
+      
+.custom-container_login{
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+             font-weight: 500;
+              /* Adjust width to increase the size horizontally */
+   			 width: 70%; /* Adjust the percentage value as needed */
+    		 max-width: 500px; /* Optional: Set a maximum width to prevent it from becoming too wide on larger screens */
+	
+    }
