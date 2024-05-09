@@ -15,7 +15,7 @@
 <link rel="icon" th:href="@{images/nav_logo.png}">
  
  <!-- Include jQuery from a CDN for sweet js -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
     
 
 </head>
@@ -24,7 +24,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light "	style="background-color: #5a9cb4;">
 	  <div class="container-fluid">
 		<a class="navbar-brand" href="#">
-		<img src="images/nav_logo.png" alt="" width="40" height="32" class="d-inline-block align-text-top">
+		<img th:src="@{/images/nav_logo.png}" alt="" width="40" height="32" class="d-inline-block align-text-top">
 		      Bank App
 		</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +35,15 @@
 	        <li class="nav-item">
 	          <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
 	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" th:href="@{/login}">Login</a>
-	        </li>
+	        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login
+          </a>
+          <ul class="dropdown-menu" style="background-color: #5a9cb4;">
+            <li><a class="dropdown-item" th:href="@{/home/user/index}">User Login</a></li>
+            <li><a class="dropdown-item" th:href="@{/home/admin/index}">Admin Login</a></li>
+          </ul>
+        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" th:href="@{/register}">Register</a>
 	        </li>
@@ -54,7 +60,7 @@
 	<!--Main Content-->
 	<div th:replace="${content}"></div>
 
-	<div id="footer">
+	<div id="footer" class="">
 		<!-- footer design starting -->
 		<!-- Remove the container if you want to extend the Footer to full width. -->
 		<div class="footer">
@@ -68,7 +74,7 @@
 						<div class="row">
 							<!-- Grid column -->
 							<div class="col-md-4 col-lg-6 col-xl-6 mx-auto mt-3">
-								<img th:src="@{images/nav_logo.png}" alt="Logo"
+								<img th:src="@{/images/nav_logo.png}" alt="Logo"
 									class="img-fluid logofooter mb-3">
 								<h5 class="text-uppercase">Bank app
 								</h5>
@@ -175,8 +181,8 @@
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
 		<!-- <script th:src="@{js/about.js}"></script> -->
-		<script th:src="@{js/register_button.js}"></script>
-		<script th:src="@{js/dialog_box.js}"></script>
+		<!--<script th:src="@{js/register_button.js}"></script>
+		<script th:src="@{js/dialog_box.js}"></script>-->
 	
 </body>
 </html>
