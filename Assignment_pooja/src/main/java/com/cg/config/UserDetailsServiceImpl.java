@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.cg.DAO.UserDao;
-import com.cg.beans.AdminUser;
+import com.cg.beans.User;
 
 
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -18,14 +18,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<AdminUser> findById = userRepo.findById(username);
+		Optional<User> findById = userRepo.findByEmail(username);
 		if (findById.isEmpty()) {
 			throw new UsernameNotFoundException("Could not found User !!");
 		}
 
 		// if user is not null then we are returning a customeUserDetail who is
 		// authorize based on role
-		AdminUser user = findById.get();
+		User user = findById.get();
 		CustomUserDetails customUserDetails = new CustomUserDetails(user);
 		return customUserDetails;
 

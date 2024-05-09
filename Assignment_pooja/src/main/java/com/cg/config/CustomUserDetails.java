@@ -7,18 +7,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.cg.beans.AdminUser;
+import com.cg.beans.User;
 
 
 public class CustomUserDetails implements UserDetails{
 
-	private AdminUser user;
+	private User user;
 
-	public AdminUser getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(AdminUser user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
@@ -29,7 +29,7 @@ public class CustomUserDetails implements UserDetails{
 
 	
 
-	public CustomUserDetails(AdminUser user) {
+	public CustomUserDetails(User user) {
 		super();
 		this.user = user;
 	}

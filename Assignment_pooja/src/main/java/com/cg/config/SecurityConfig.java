@@ -50,17 +50,17 @@ public class SecurityConfig {
 		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {	 			
 			return http.csrf(obj->obj.disable())
 	                .authorizeHttpRequests(auth -> {
-	                            auth.requestMatchers("/home/admin/*").hasRole("ADMIN");
+	                            auth.requestMatchers("/home/admin/**").hasRole("ADMIN");
+	                            auth.requestMatchers("/home/user/*").hasRole("NORMAL_USER");
 	                            auth.requestMatchers("/**").permitAll();
 	                            
 	                            auth.anyRequest().authenticated();
 	                        }
 	                )
-	                .exceptionHandling(obj->obj.accessDeniedPage("/error"))
 	                .formLogin(obj->obj
 	                		.loginPage("/login")
 	                		.loginProcessingUrl("/dologin")
-	                		//.defaultSuccessUrl("/home/admin/index")
+	                		.defaultSuccessUrl("/home/admin/index")
 	                		)
 	                .build();
 		}
