@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title th:text="${title}">BankApp</title>
+	<link rel="icon" th:href="@{images/nav_logo.png}">
+
+	<!-- Include jQuery from a CDN for sweet js -->
+	<!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+
+
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #5a9cb4;">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">
+				<img th:src="@{/images/nav_logo.png}" alt="" width="40" height="32"
+					class="d-inline-block align-text-top">
+				Bank App
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link text-white active" aria-current="page" th:href="@{/home/user/index}">Home</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link text-white" href="#">
+							<span th:text="${user.fname}"></span>
+						</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link text-white" href="#" tabindex="-1" aria-disabled="true">Tracker</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link text-white" th:href="@{/logout}">Logout</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- End of Navbar -->
+
+	<!--Main Content-->
+	<div th:replace="${content}"></div>
+
+	<div id="footer" class="fixed-bottom">
+		<!-- footer design starting -->
+		<!-- Remove the container if you want to extend the Footer to full width. -->
+		<div class="footer">
+			<!-- Footer -->
+			<footer class="text-center text-lg-start text-white bg-dark">
+				<!-- Grid container -->
+				<div class="container p-4 pb-0">
+					<!-- Section: Links -->
+					<section class="">
+						<!--Grid row-->
+						<div class="row">
+							<!-- Grid column -->
+							<div class="col-md-4 col-lg-6 col-xl-6 mx-auto mt-3">
+								<img th:src="@{/images/nav_logo.png}" alt="Logo" class="img-fluid logofooter mb-3">
+								<h5 class="text-uppercase">Bank app
+								</h5>
+							</div>
+							<!-- Grid column -->
+
+							<hr class="w-100 clearfix d-md-none" />
+							<!-- Grid column -->
+							<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+								<h6 class="text-uppercase mb-4 font-weight-bold footertag">Useful links</h6>
+								<p class="mb-2">
+									<a th:href="@{/contest-rule}" class="text-white">link1</a>
+								</p>
+								<p class="mb-2">
+									<a th:href="@{/enrollnment}" class="text-white">link2</a>
+								</p>
+								<p class="mb-2">
+									<a th:href="@{/prize}" class="text-white">link3</a>
+								</p>
+								<p class="mb-2">
+									<a th:href="@{/register}" class="text-white">link4</a>
+								</p>
+							</div>
+
+							<!-- Grid column -->
+							<hr class="w-100 clearfix d-md-none" />
+
+							<!-- Grid column -->
+							<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+								<h6 class="text-uppercase mb-4 font-weight-bold footertag">Contact US</h6>
+								<p>
+									<i class="fas fa-home mr-3"></i> Mumbai, Maharastra, INDIA
+								</p>
+								<p>
+									<i class="fas fa-envelope mr-3"></i> support@bank.com
+								</p>
+								<p>
+									<i class="fas fa-phone mr-3"></i> or <i class="fab fa-whatsapp"></i> + 91 3322445543
+								</p>
+							</div>
+							<!-- Grid column -->
+						</div>
+						<!--Grid row-->
+					</section>
+					<!-- Section: Links -->
+
+					<hr class="my-3">
+
+					<!-- Section: Copyright -->
+					<section class="p-3 pt-0">
+						<div class="row d-flex align-items-center">
+							<!-- Grid column -->
+							<div class="col-md-7 col-lg-8 col-sm-12 text-center text-md-start copyright">
+								<!-- Copyright -->
+								<div class="p-3">
+									© 2020 Copyright: <a class="text-white" href="#" style="text-decoration: none;">
+										CHECKMATE CHESS PREMIER
+										LEAGUE CLUB</a>
+								</div>
+								<!-- Copyright -->
+							</div>
+							<!-- Grid column -->
+
+							<!-- Grid column -->
+							<div class="col-md-5 col-lg-4  col-sm-12 ml-lg-0 text-center text-md-end ">
+								<!-- Facebook -->
+								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
+									role="button" th:href="@{https://www.facebook.com/people/CCPL/61555129109146/}"> <i
+										class="fab fa-facebook-f"></i>
+								</a>
+
+								<!-- Whatsapp -->
+								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
+									role="button" href="https://wa.me/7700990778"> <i class="fab fa-whatsapp"></i>
+								</a>
+
+								<!-- Google -->
+								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
+									role="button" href="mailto:checkmatechesspremierleague@gmail.com"> <i
+										class="fab fa-google"></i>
+								</a>
+
+								<!-- Instagram -->
+								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
+									role="button" th:href="@{https://www.instagram.com/ccpl.club/}"> <i
+										class="fab fa-instagram"></i>
+								</a>
+
+								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
+									role="button" th:href="@{https://x.com/CCPL_CLUB?s=20}"> <i
+										class="fa-brands fa-x-twitter"></i>
+								</a>
+							</div>
+							<!-- Grid column -->
+						</div>
+					</section>
+					<!-- Section: Copyright -->
+				</div>
+				<!-- Grid container -->
+			</footer>
+			<!-- Footer -->
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<!-- <script th:src="@{js/about.js}"></script> -->
+	<!--<script th:src="@{js/register_button.js}"></script>
+		<script th:src="@{js/dialog_box.js}"></script>-->
+
+</body>
+
+</html>
