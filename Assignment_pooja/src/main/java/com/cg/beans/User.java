@@ -6,8 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -22,11 +20,11 @@ import jakarta.validation.constraints.Pattern;
 @Table(name = "bankApp_user")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	
 	@Pattern(regexp = "^\\s*[a-zA-Z]+(['\\s-][a-zA-Z]+)*\\s*$", message = "Please enter a valid name with only letters")
 	private String fname;
+	
+	@Id
 	@Column(unique = true)
 	@NotBlank(message = "Please enter an email")
 	@Email(message = "Please provide a valid email address")
@@ -45,12 +43,7 @@ public class User {
 	
 	
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getFname() {
 		return fname;
 	}
@@ -94,9 +87,9 @@ public class User {
 	public void setCpassword(String cpassword) {
 		this.cpassword = cpassword;
 	}
-	public User(int id, String fname, String email, String password, String role, Date dOB, String gender) {
+	public User(String fname, String email, String password, String role, Date dOB, String gender) {
 		super();
-		this.id = id;
+		
 		this.fname = fname;
 		this.email = email;
 		this.password = password;
