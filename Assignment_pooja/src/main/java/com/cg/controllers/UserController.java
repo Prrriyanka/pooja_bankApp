@@ -1,5 +1,6 @@
 package com.cg.controllers;
 
+
 import java.security.Principal;
 import java.util.Optional;
 
@@ -13,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cg.beans.User;
 import com.cg.service.UserService;
 
-
-@Controller()
-@RequestMapping(value = "/home/admin/")
-public class AdminController {
-
+@Controller
+@RequestMapping(value = "/home/user/")
+public class UserController {
+	
 	@Autowired
 	private UserService userServiceImpl;
-
+	
 	@ModelAttribute
 	public void addCommonData(Model model, Principal principal) {
 		// principal will give current logged in user name
@@ -35,11 +35,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/index")
-	public String adminHome(Model model) {
-		model.addAttribute("title", "CCPL-Admin Dashboard");
-		return "admin/admin";
+	public String index(Model model) {
+		model.addAttribute("title", "User Dashboard");
+		return "User/dashboard";
 	}
 
-	
-	
 }
