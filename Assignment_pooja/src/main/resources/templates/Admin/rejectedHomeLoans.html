@@ -1,9 +1,12 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{User/Template::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{Admin/Template::layout(~{::section})}">
 
 <head>
 	<meta charset="UTF-8" />
 	<title>Home Page</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 	<style>
 		table {
@@ -26,12 +29,14 @@
 
 <body>
 	<section>
-		<h1>hello User</h1>
+		<h1>hello Admin Rejected home loans</h1>
+		
 		<!-- Display error message if it exists -->
-						<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-							<p th:text="${errorMessage}"></p>
-						</div>
-
+								<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+									<p th:text="${errorMessage}"></p>
+								</div>
+		   
+		
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<thead>
@@ -39,35 +44,32 @@
 						<th>Loan ID</th>
 						<th>Loan Type</th>
 						<th>Name</th>
-						<th>Loan Amount</th>
-						<th>OutstandingEMICount</th>
+						<th>Surname</th>
 						<th>Approval Status</th>
+						
 						<!-- Add more table headers as needed -->
 					</tr>
 				</thead>
 				<tbody>
 					<!-- Use Thymeleaf iteration to loop through each loan -->
 					<tr th:each="loan : ${loans}">
-						<td>
-							<a th:href="@{/home/user/{id}/loandetails(id=${loan.id})}" target="_blank" th:text="${loan.id}">Loan ID</a>
-						</td>
+						<td th:text="${loan.id}">Loan ID</td>
 						<td th:text="${loan.loantype}">Loan Type</td>
 						<td th:text="${loan.name}">Name</td>
-						<td th:text="${loan.totalLoanAmount}">Loan Amount</td>
-						<td th:text="${loan.outstandingEMICount}">Outstanding EMICount</td>
+						<td th:text="${loan.surname}">Surname</td>
 						<td th:text="${loan.approvalStatus}">Approval status</td>
-						
 						
 						<!-- Add more table cells to display other loan details -->
 					</tr>
 				</tbody>
 			</table>
 		</div>
-
-
 	</section>
 
-
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

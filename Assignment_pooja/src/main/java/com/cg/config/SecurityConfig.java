@@ -52,6 +52,7 @@ public class SecurityConfig {
 	                .authorizeHttpRequests(auth -> {
 	                            auth.requestMatchers("/home/admin/**").hasRole("ADMIN");
 	                            auth.requestMatchers("/home/user/*").hasRole("NORMAL_USER");
+	                            auth.requestMatchers("/h2-console/**").permitAll();
 	                            auth.requestMatchers("/**").permitAll();
 	                            
 	                            auth.anyRequest().authenticated();
@@ -60,8 +61,10 @@ public class SecurityConfig {
 	                .formLogin(obj->obj
 	                		.loginPage("/login")
 	                		.loginProcessingUrl("/dologin")
-	                		.defaultSuccessUrl("/home/admin/index")
+	                		.defaultSuccessUrl("/home/user/index")
 	                		)
+	                .headers(headers -> headers.frameOptions().disable())  // Disable X-Frame-Options header
+	  
 	                .build();
 		}
 }

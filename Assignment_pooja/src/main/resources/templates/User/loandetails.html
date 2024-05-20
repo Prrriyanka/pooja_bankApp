@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Loan Details</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		  
+	
+		  <title th:text="${title}">BankApp</title>
+		  <link rel="icon" th:href="@{images/nav_logo.png}">
+
+	<style>
+		.cardreg {
+
+			padding: 15px;
+			margin-inline: 10px;
+			border-radius: 15px;
+			border-style: solid;
+			border-color: lightblue;
+
+			transition: transform 0.2s, box-shadow 0.2s;
+			/* Add smooth transition for transform and box-shadow changes */
+
+			/* Set the initial styles for the cardreg element */
+			transform: scale(1);
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			/* Initial box-shadow */
+
+			/* Add a hover effect */
+		}
+
+		.cardreg:hover {
+			transform: scale(1.03);
+			/* Increase size on hover */
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+			/* Increase shadow on hover */
+		}
+		/* Error message styling */
+		.error-message {
+		    color: white;
+		    background-color: red;
+		    padding: 10px;
+		    border-radius: 5px;
+		}
+		
+		/* Success message styling */
+		.success-message {
+		    color: white;
+		    background-color: green;
+		    padding: 10px;
+		    border-radius: 5px;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<div th:if="${errorMessage}" class="alert alert-danger error-message mt-4" role="alert">
+		    <p th:text="${errorMessage}"></p>
+		</div>
+		<div th:if="${successMessage}" class="alert alert-success success-message mt-4" role="alert">
+		    <p th:text="${successMessage}"></p>
+		</div>
+
+		
+
+		<div class="py-2">
+			<h5 class="headsTag">Loan Details</h5>
+			<div class="cardreg">
+				<div class="row g-3">
+					<div class="col-md-4">
+						<label for="loanId" class="form-label headsTagp">Loan ID</label>
+						<input type="text" id="loanId" class="form-control headsTagp" th:value="${loan.id}" readonly>
+				
+					</div>
+					<div class="col-md-4">
+						<label for="loanType" class="form-label headsTagp">Loan Type</label>
+						<input type="text" id="loanType" class="form-control headsTagp" th:value="${loan.loantype}"
+							readonly>
+					</div>
+					<div class="col-md-4">
+						<label for="name" class="form-label headsTagp">Name</label>
+						<input type="text" id="name" class="form-control headsTagp" th:value="${loan.name}" readonly>
+					</div>
+					<div class="col-md-4">
+						<label for="surname" class="form-label headsTagp">Surname</label>
+						<input type="text" id="surname" class="form-control headsTagp" th:value="${loan.surname}"
+							readonly>
+					</div>
+					<div class="col-md-4">
+						<label for="address" class="form-label headsTagp">Address</label>
+						<input type="text" id="address" class="form-control headsTagp" th:value="${loan.address}"
+							readonly>
+					</div>
+					<div class="col-md-4">
+						<label for="approvalStatus" class="form-label headsTagp">Approval Status</label>
+						<input type="text" id="approvalStatus" class="form-control headsTagp"
+							th:value="${loan.approvalStatus}" readonly>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+<!--		///////card1 end
+-->
+
+<!-- New card for remaining fields -->
+   <div class="py-2">
+       <h5 class="headsTag">Remaining Loan Details</h5>
+       <div class="cardreg">
+           <div class="row g-3">
+			<div class="col-md-4">
+			                  <label for="creationDate" class="form-label headsTagp">Loan Creation Date</label>
+			                  <input type="text" id="creationDate" class="form-control headsTagp" th:value="${loan.creationDate}" readonly>
+			              </div>
+               <div class="col-md-4">
+                   <label for="totalLoanAmount" class="form-label headsTagp">Total Loan Amount</label>
+                   <input type="text" id="totalLoanAmount" class="form-control headsTagp" th:value="${loan.totalLoanAmount}" readonly>
+               </div>
+               <div class="col-md-4">
+                   <label for="loanTenure" class="form-label headsTagp">Loan Tenure</label>
+                   <input type="text" id="loanTenure" class="form-control headsTagp" th:value="${loan.loanTenure}" readonly>
+               </div>
+               <div class="col-md-4">
+                   <label for="currentROI" class="form-label headsTagp">Current ROI</label>
+                   <input type="text" id="currentROI" class="form-control headsTagp" th:value="${loan.currentROI}" readonly>
+               </div>
+               <div class="col-md-4">
+                   <label for="principalOutstandingAmount" class="form-label headsTagp">Principal Outstanding Amount</label>
+                   <input type="text" id="principalOutstandingAmount" class="form-control headsTagp" th:value="${loan.principalOutstandingAmount}" readonly>
+               </div>
+               <div class="col-md-4">
+                   <label for="outstandingEMICount" class="form-label headsTagp">Outstanding EMI Count</label>
+                   <input type="text" id="outstandingEMICount" class="form-control headsTagp" th:value="${loan.outstandingEMICount}" readonly>
+               </div>
+               <div class="col-md-4">
+                   <label for="monthlyEMI" class="form-label headsTagp">Monthly EMI</label>
+                   <input type="text" id="monthlyEMI" class="form-control headsTagp" th:value="${loan.monthlyEMI}" readonly>
+               </div>
+               <!-- Add more fields here as needed -->
+           </div>
+       </div>
+   </div>
+   
+
+
+		
+		<form th:action="@{/home/user/payEMI/{loanId}(loanId=${loan.id})}" method="post">
+		    <button type="submit" class="mb-4">Pay EMI</button>
+		</form>
+		
+
+
+	</div>
+</body>
+
+</html>

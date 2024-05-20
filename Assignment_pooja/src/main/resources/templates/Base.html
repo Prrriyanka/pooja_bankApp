@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:fragment="layout(content)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -10,9 +9,12 @@
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <link rel="stylesheet" th:href="@{css/style.css}">
 <title th:text="${title}">BankApp</title>
 <link rel="icon" th:href="@{images/nav_logo.png}">
+
  
  <!-- Include jQuery from a CDN for sweet js -->
     <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
@@ -39,10 +41,11 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
           </a>
-          <ul class="dropdown-menu" style="background-color: #5a9cb4;">
-            <li><a class="dropdown-item" th:href="@{/home/user/index}">User Login</a></li>
-            <li><a class="dropdown-item" th:href="@{/home/admin/index}">Admin Login</a></li>
-          </ul>
+		  <ul class="dropdown-menu" style="background-color: #5a9cb4;">
+		      <li><a class="dropdown-item" th:href="@{/home/user/index}">User Login</a></li>
+		      <li><a class="dropdown-item" th:href="@{/home/admin/index}">Admin Login</a></li>
+		  </ul>
+
         </li>
 	        <li class="nav-item">
 	          <a class="nav-link" th:href="@{/register}">Register</a>
@@ -58,7 +61,7 @@
 	<!-- End of Navbar -->
 
 	<!--Main Content-->
-	<div th:replace="${content}"></div>
+	<div th:replace="${content}" th:with="param=${param}"></div>
 
 	<div id="footer" class="">
 		<!-- footer design starting -->
@@ -132,8 +135,7 @@
 								<!-- Copyright -->
 								<div class="p-3">
 									© 2020 Copyright: <a class="text-white" href="#"
-										style="text-decoration: none;"> CHECKMATE CHESS PREMIER
-										LEAGUE CLUB</a>
+										style="text-decoration: none;">	BankAPP</a>
 								</div>
 								<!-- Copyright -->
 							</div>
@@ -144,26 +146,26 @@
 								class="col-md-5 col-lg-4  col-sm-12 ml-lg-0 text-center text-md-end ">
 								<!-- Facebook -->
 								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
-									role="button" th:href="@{https://www.facebook.com/people/CCPL/61555129109146/}"> <i class="fab fa-facebook-f"></i>
+									role="button" th:href="@{https://www.facebook.com/}"> <i class="fab fa-facebook-f"></i>
 								</a>
 								
 								<!-- Whatsapp -->
 								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
-									role="button" href="https://wa.me/7700990778"> <i class="fab fa-whatsapp"></i>
+									role="button" href="https://wa.me/8125662325"> <i class="fab fa-whatsapp"></i>
 								</a>
 
 								<!-- Google -->
 								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
-									role="button" href="mailto:checkmatechesspremierleague@gmail.com"> <i class="fab fa-google"></i>
+									role="button" href="mailto:pooja@gmail.com"> <i class="fab fa-google"></i>
 								</a>
 
 								<!-- Instagram -->
 								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
-									role="button" th:href="@{https://www.instagram.com/ccpl.club/}"> <i class="fab fa-instagram"></i>
+									role="button" th:href="@{https://www.instagram.com/}"> <i class="fab fa-instagram"></i>
 								</a>
 								
 								<a class="btn btn-outline-light btn-floating m-1 text-white" target="_blank"
-									role="button" th:href="@{https://x.com/CCPL_CLUB?s=20}"> <i class="fa-brands fa-x-twitter"></i>
+									role="button" th:href="@{https://x.com/}"> <i class="fa-brands fa-x-twitter"></i>
 								</a>
 							</div>
 							<!-- Grid column -->

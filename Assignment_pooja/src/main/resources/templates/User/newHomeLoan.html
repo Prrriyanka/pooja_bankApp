@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{User/Template::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home Page</title>
+
+</head>
+
+<body>
+	<section>
+		<form th:object="${loan}" th:action="@{saveHomeLoan}" method="post">
+
+			<!-- Start -->
+			<div class="py-2">
+				<h5 class="headsTag">Home Loan Details</h5>
+				<div class="cardreg">
+					<div class="row	 g-3">
+						<!-- Debug statement to print the value of selectedTeam -->
+						<!-- Selected Team: [[${selectedloanType}]] -->
+						<div class="col-md-4">
+							<label for="loantype" class="form-label headsTagp">Home Loan Type <span
+									class="text-danger">*</span></label>
+							<select id="loantype" class="form-select headsTagp" th:field="*{loantype}">
+								<option value="Basic_home_loan"
+									th:selected="${selectedloanType == null or selectedloanType.trim() == '' or selectedloanType.trim() == 'Basic_home_loan'}">
+									Basic_home_loan</option>
+								<option value="Home_Construction_loan"
+									th:selected="${selectedloanType != null and selectedloanType.trim() == 'Home_Construction_loan'}">
+									Home_Construction_loan</option>
+								<option value="Home_extension_loan"
+									th:selected="${selectedloanType != null and selectedloanType.trim() == 'Home_extension_loan'}">
+									Home_extension_loan</option>
+								<option value="Home_loan_balance_transfer"
+									th:selected="${selectedloanType != null and selectedloanType.trim() == 'Home_loan_balance_transfer'}">
+									Home_loan_balance_transfer</option>
+								<option value="Pradhan_mantri_awas_yojana"
+									th:selected="${selectedloanType != null and selectedloanType.trim() == 'Pradhan_mantri_awas_yojana'}">
+									Pradhan_mantri_awas_yojana</option>
+							</select>
+
+
+							<script th:inline="javascript">
+								var selectedloanType = /*[[${selectedloanType}]]*/ '';
+								var selectElement = document.getElementById('loantype');
+								for (var i = 0; i < selectElement.options.length; i++) {
+									if (selectElement.options[i].value === selectedloanType) {
+										selectElement.options[i].selected = true;
+										break;
+									}
+								}
+							</script>
+
+						</div>
+
+
+						<div class="col-md-4">
+							<label for="name" class="form-label headsTagp">Name <span
+									class="text-danger">*</span></label>
+							<input type="text" id="name" name="name" class="form-control headsTagp" required>
+						</div>
+
+						<div class="col-md-4">
+							<label for="surname" class="form-label headsTagp">Surname <span
+									class="text-danger">*</span></label>
+							<input type="text" id="surname" name="surname" class="form-control headsTagp" required>
+						</div>
+
+						<div class="col-md-12">
+							<label for="address" class="form-label headsTagp">Address <span
+									class="text-danger">*</span></label>
+							<textarea id="address" name="address" class="form-control headsTagp" rows="3"
+								required></textarea>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Start -->
+						<div class="py-2">
+							<h5 class="headsTag">Home Loan Details</h5>
+							<div class="cardreg">
+								<div class="row	 g-3">
+									
+										
+									<div class="col-md-4">
+										<label for="name" class="form-label headsTagp">Nominee Name <span
+												class="text-danger">*</span></label>
+										<input type="text" id="nominee" name="nominee" class="form-control headsTagp" required>
+									</div>
+			
+									<div class="col-md-4">
+										<label for="totalLoanAmount" class="form-label headsTagp">totalLoanAmount <span
+												class="text-danger">*</span></label>
+										<input type="text" id="totalLoanAmount" name="totalLoanAmount" class="form-control headsTagp" required>
+									</div>
+			
+									<div class="col-md-4">
+										<label for="loanTenure" class="form-label headsTagp">loanTenure <span
+												class="text-danger">*</span></label>
+										<input id="loanTenure" name="loanTenure" class="form-control headsTagp" rows="3"
+											required></input>
+									</div>
+			
+			
+									<button type="submit" id="submitButton" class="btn btn-primary m-3 headsTagp">Submit</button>
+								</div>
+							</div>
+
+
+		</form>
+	</section>
+
+</body>
+
+</html>

@@ -53,9 +53,46 @@
 	</nav>
 
 	<!-- End of Navbar -->
-
-	<!--Main Content-->
-	<div th:replace="${content}"></div>
+	<div class="container-fluid">
+	       <div class="row">
+	           <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+	               <div class="position-sticky">
+	                   <ul class="nav flex-column">
+	                       <li class="nav-item">
+	                           <a class="nav-link" th:href="@{/home/admin/index}">
+	                               <i class="fa-solid fa-house"></i> Admin Dashboard
+	                           </a>
+	                       </li>
+	                       <li class="nav-item">
+	                           <a class="nav-link" th:href="@{/home/admin/appliedHomeLoans}">
+	                               <i class="fa-solid fa-address-card"></i>All applied loans
+	                           </a>
+	                       </li>
+	                       <li class="nav-item">
+	                           <a class="nav-link" th:href="@{/home/admin/rejectedHomeLoans}">
+	                               <i class="fa-solid fa-user-pen"></i> Rejected Loans
+	                           </a>
+	                       </li>
+	                       <li class="nav-item">
+	                           <a class="nav-link" th:href="@{/home/admin/approvedHomeLoans}">
+	                               <i class="fa-solid fa-circle-user"></i> Approved Loans 
+	                           </a>
+	                       </li>
+	                     
+	                     
+	                   </ul>
+	               </div>
+	           </nav>
+	           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	               <div th:fragment="layout">
+	                   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	                       <h1 class="h2" th:text="${title}">Dashboard</h1>
+	                   </div>
+	                   <div th:replace="${content}"></div>
+	               </div>
+	           </main>
+	       </div>
+	   </div>
 
 	<div id="footer">
 		<!-- footer design starting -->

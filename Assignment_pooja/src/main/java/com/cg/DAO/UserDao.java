@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cg.beans.User;
 
-public interface UserDao extends JpaRepository<User, Integer>{
+public interface UserDao extends JpaRepository<User, String>{
 
 	Optional<User> findByEmail(String email);
+	
 
 	
 

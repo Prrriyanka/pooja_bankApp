@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{User/Template::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home Page</title>
+	<style>
+		/* Optional custom CSS */
+		.custom-card {
+			width: 18rem;
+			margin: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<!-- Display error message if it exists -->
+		<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+			<p th:text="${errorMessage}"></p>
+		</div>
+		<h1>hello User</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<img class="card-img-top" th:src="@{/images/basic_home_loan.jpg}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">1. Basic Home Loan</h5>
+							<p class="card-text">It is a type of loan that enables you to borrow
+								money from the lender for buying a property of your choice. After the purchase, you can
+								then repay the loan to the lender through monthly instalments.</p>
+							<p class="card-text"><small class="text-muted">
+									<a th:href="@{newHomeLoan(loantype='Basic_home_loan')}">Apply for basic home
+										Loan</a></small></p>
+							<p>
+								<a th:href="@{/home/user/basic_home_loan_details}" target="_blank"
+									class="btn btn-primary">
+									More Info
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<img class="card-img-top" th:src="@{/images/Construction_home_loan.jpg}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title"> Home Construction Loan</h5>
+							<p class="card-text"> If you own land and want to build a home, consider a home construction
+								loan. This loan is disbursed in instalments based on the progress of your construction
+								project, helping you fund your dream home.
+							</p>
+							<p class="card-text"><small class="text-muted"> <a
+										th:href="@{newHomeLoan(loantype='Home_Construction_loan')}">Apply for
+										Construction Home Loan</a></small></p>
+							<p>
+								<a th:href="@{/home/user/basic_home_loan_details}" target="_blank"
+									class="btn btn-primary">
+									More Info
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<img class="card-img-top" th:src="@{/images/Home_extension_loan.jpg}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title"> Home Extension/Improvement Loan</h5>
+							<p class="card-text"> If you already have a home but want to add a room or maybe a floor to
+								it, a home extension loan can help. </p>
+							<p class="card-text"><small class="text-muted"><a
+										th:href="@{newHomeLoan(loantype='Home_extension_loan')}"> Apply
+										for Home Extension/Improvement Loan
+									</a></small></p>
+							<p>
+								<a th:href="@{/home/user/basic_home_loan_details}" target="_blank"
+									class="btn btn-primary">
+									More Info
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--//////////////////////////second row of cards/////////////////////////////////////////
+			-->
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<img class="card-img-top" th:src="@{/images/basic_home_loan.jpg}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Home Loan Balance Transfer</h5>
+							<p class="card-text"> If you have already taken a Home Loan and are repaying it now, you
+								have the option to switch to a different lender. Borrowers generally do this in cases
+								where they can get a Home Loan from a different lender at a lower interest rate.</p>
+							<p class="card-text"><small class="text-muted"><a
+										th:href="@{newHomeLoan(loantype='Home_loan_balance_transfer')}">Apply for Home
+										Loan Balance Transfer</a></small>
+							</p>
+							<p>
+								<a th:href="@{/home/user/basic_home_loan_details}" target="_blank"
+									class="btn btn-primary">
+									More Info
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<img class="card-img-top" th:src="@{/images/Construction_home_loan.jpg}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title"> Pradhan Mantri Awas Yojana (PMAY)</h5>
+							<p class="card-text"> With the Credit-Linked Subsidy Scheme (CLSS) under PMAY, first-time
+								homeowners can get Home Loans at subsidised interest rates. This can allow you to save
+								as much as Rs 2.67 lakh on the Home Loan. 
+							</p>
+							<p class="card-text"><small class="text-muted"> <a
+										th:href="@{newHomeLoan(loantype='Pradhan_mantri_awas_yojana')}">Apply for
+										Pradhan Mantri Awas Yojana (PMAY)</a></small></p>
+							<p>
+								<a th:href="@{/home/user/basic_home_loan_details}" target="_blank"
+									class="btn btn-primary">
+									More Info
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+
+</body>
+
+</html>

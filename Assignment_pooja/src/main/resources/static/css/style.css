@@ -13,10 +13,12 @@
   }
   
    .center-container {
+	padding-top: 20px;
+	padding-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 150vh;
+    /*        height: 100vh;*/
             background-color: #9acfe1;
            
         }
