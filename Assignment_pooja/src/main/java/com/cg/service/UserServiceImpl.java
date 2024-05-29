@@ -117,27 +117,29 @@ public class UserServiceImpl implements UserService{
         
         // Calculate interest part of the EMI
         double interestPayment = principalOutstanding * monthlyInterestRate;
-
-        // Principal part of the EMI
-        double principalPayment = emi - interestPayment;
-
-        // Update the outstanding principal
-        principalOutstanding -= principalPayment;
-
-     // Format the principalOutstandingAmount to show only two decimal places
-        String formattedPrincipalOutstanding = String.format("%.2f", principalOutstanding);
-
-        // Update the loan entity with the formatted principalOutstandingAmount
-        loan.setPrincipalOutstandingAmount(formattedPrincipalOutstanding);
-
         // Update the outstanding EMI count
         int outstandingEMICount = Integer.parseInt(loan.getOutstandingEMICount());
+        // Principal part of the EMI
+        double principalPayment = emi - interestPayment;
+      
+        
+        if(outstandingEMICount>0) {
+        // Update the outstanding principal
+        principalOutstanding -= principalPayment;
+        // Format the principalOutstandingAmount to show only two decimal places
+        String formattedPrincipalOutstanding = String.format("%.2f", principalOutstanding);
+        // Update the loan entity with the formatted principalOutstandingAmount
+        loan.setPrincipalOutstandingAmount(formattedPrincipalOutstanding);  
         outstandingEMICount -= 1;
         loan.setOutstandingEMICount(String.valueOf(outstandingEMICount));
+        
+        }
 
         // If outstanding EMI count is 0, mark the loan as fulfilled
-        if (outstandingEMICount == 0) {
+        if (outstandingEMICount <= 0) {
             loan.setApprovalStatus("fulfilled");
+            loan.setPrincipalOutstandingAmount("0");
+            loan.setOutstandingEMICount("0");
         }
         // Save the loan entity
         return loandao.save(loan);
