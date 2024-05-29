@@ -146,15 +146,22 @@ public class UserController {
 	 @PostMapping("/payEMI/{loanId}")
 	 public String payEMI(@PathVariable int loanId, RedirectAttributes redirectAttributes) {
 	     try {
-	         loan updatedLoan = userServiceImpl.payEMI(loanId);
-	         System.out.println("Test on id: " + loanId);
-	         
+	    	 
+	    	 Optional<loan> optionalLoan = userServiceImpl.getLoanById(loanId);
+	    	 if (optionalLoan.isPresent()) {
+	    		    loan getloan = optionalLoan.get();
 	         // Check if the loan approval status is "waiting for approval"
-	         if (updatedLoan.getApprovalStatus().equalsIgnoreCase("waiting for approval")) {
+	         if (getloan.getApprovalStatus().equalsIgnoreCase("waiting for approval")) {
 	             redirectAttributes.addFlashAttribute("errorMessage", "Loan is not approved yet");
 	             return "redirect:/home/user/" + loanId + "/loandetails";
 	         }
-
+	         else if(getloan.getApprovalStatus().equalsIgnoreCase("rejected")) {
+	        	 redirectAttributes.addFlashAttribute("errorMessage", "Loan is Rejected");
+	             return "redirect:/home/user/" + loanId + "/loandetails";
+	         }
+	    	 }
+	         loan updatedLoan = userServiceImpl.payEMI(loanId);
+	         System.out.println("Test on id: " + loanId);
 	         // Add success message
 	         redirectAttributes.addFlashAttribute("successMessage", "EMI payment successful");
 	     } catch (RuntimeException e) {
