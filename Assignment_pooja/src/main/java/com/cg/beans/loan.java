@@ -1,6 +1,7 @@
 package com.cg.beans;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -226,6 +227,45 @@ public class loan {
 	}
 
 
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Id, address, approvalStatus, creationDate, currentROI, loanTenure, loantype, monthlyEMI,
+				name, nominee, outstandingEMICount, principalOutstandingAmount, surname, totalLoanAmount, user);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		loan other = (loan) obj;
+		return Id == other.Id && Objects.equals(address, other.address)
+				&& Objects.equals(approvalStatus, other.approvalStatus)
+				&& Objects.equals(creationDate, other.creationDate) && Objects.equals(currentROI, other.currentROI)
+				&& Objects.equals(loanTenure, other.loanTenure) && Objects.equals(loantype, other.loantype)
+				&& monthlyEMI == other.monthlyEMI && Objects.equals(name, other.name)
+				&& Objects.equals(nominee, other.nominee)
+				&& Objects.equals(outstandingEMICount, other.outstandingEMICount)
+				&& Objects.equals(principalOutstandingAmount, other.principalOutstandingAmount)
+				&& Objects.equals(surname, other.surname) && Objects.equals(totalLoanAmount, other.totalLoanAmount)
+				&& Objects.equals(user, other.user);
+	}
+
+
+
 
 	@Override
 	public String toString() {
@@ -233,32 +273,9 @@ public class loan {
 				+ loantype + ", approvalStatus=" + approvalStatus + ", nominee=" + nominee + ", totalLoanAmount="
 				+ totalLoanAmount + ", loanTenure=" + loanTenure + ", currentROI=" + currentROI
 				+ ", principalOutstandingAmount=" + principalOutstandingAmount + ", outstandingEMICount="
-				+ outstandingEMICount + ", monthlyEMI=" + monthlyEMI + ", user=" + user + "]";
+				+ outstandingEMICount + ", monthlyEMI=" + monthlyEMI + ", creationDate=" + creationDate + ", user="
+				+ user + "]";
 	}
-
-
-
-
-
-
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-
-
-
-
-
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-
-
-
 
 	
 	

@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,16 +24,21 @@ import com.cg.service.UserService;
 import com.cg.service.UserServiceImpl;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
+@SessionAttributes("user")
 @RequestMapping(value = "/home/user/")
 public class UserController {
 
 	@Autowired
 	private UserService userServiceImpl;
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@ModelAttribute
 	public void addCommonData(Model model, Principal principal) {
@@ -48,9 +55,10 @@ public class UserController {
 	}
 
 	@GetMapping("/index")
-	public String index(Model model) {
+	public String index(Model model, RedirectAttributes redirectAttributes) {
 		model.addAttribute("title", "User Dashboard");
 
+	
 	
 			// Get the logged-in user's email
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -67,6 +75,7 @@ public class UserController {
 
 				// Add the list of loans to the model
 				model.addAttribute("loans", loans);
+				logger.info("Authentication Successful ...logged in user" + user);
 			}
 		return "User/dashboard";
 	}

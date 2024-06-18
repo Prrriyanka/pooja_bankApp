@@ -12,7 +12,6 @@ import com.cg.DAO.loanDao;
 import com.cg.beans.User;
 import com.cg.beans.loan;
 import com.cg.exceptions.LoanDetailsNotFoundException;
-import com.cg.exceptions.UserDetaislNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -26,11 +25,16 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private loanDao loandao;
 	
+	public UserServiceImpl() {
+		super();
+		
+	}
+
 	@Override
 	public User saveUser(User user) {
 		user.setRole("ROLE_NORMAL_USER");
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userDao.save(user);
+		user.setPassword(getPasswordEncoder().encode(user.getPassword()));
+//		getUserDao().save(user);
 		return userDao.save(user);
 	}
 
@@ -64,7 +68,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<loan> getAllLoans() {
 		// TODO Auto-generated method stub
-		return null;
+		return loandao.findAll();
 	}
 
 	@Override
@@ -144,6 +148,28 @@ public class UserServiceImpl implements UserService{
         // Save the loan entity
         return loandao.save(loan);
     }
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+	public BCryptPasswordEncoder getPasswordEncoder() {
+		return passwordEncoder;
+	}
+
+	public void setPasswordEncoder(BCryptPasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
+
+	public void setloanDao(loanDao loanDao) {
+		this.loandao = loanDao;
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

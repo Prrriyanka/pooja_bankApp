@@ -3,6 +3,8 @@ package com.cg.controllers;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cg.beans.User;
 import com.cg.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 
@@ -25,6 +29,7 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 
 	@GetMapping("/")
@@ -62,7 +67,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/do_register")
-	public String saveuser(@Valid @ModelAttribute("user")User user,BindingResult result,Model model) {
+	public String saveuser(@Valid @ModelAttribute("user")User user,BindingResult result,Model model,HttpSession session) {
 
 		try {
 			//TODO: process POST request
@@ -86,7 +91,20 @@ public class HomeController {
 			model.addAttribute("user", user);
 			User u1= userService.saveUser(user);
 
-
+			// Set success message and redirect to login page
+			//model.addAttribute("successMessage", "User registered successfully. Please log in."); 
+			/*
+			 * When you use redirect:/home/user/index to redirect after a successful
+			 * registration, any model attributes you add directly before the redirect
+			 * (successMessage in this case) won't persist because the redirect causes a new
+			 * request to be made. To pass data between redirects in Spring MVC, you can use
+			 * flash attributes.
+			 */
+			 logger.info("Successful Registration... USING LOGGER");
+			
+			// Set success message in session attribute
+            session.setAttribute("successMessage", "User registered successfully. Please log in.");
+            session.setMaxInactiveInterval(4); // 60 seconds (1 minute)
 			return "redirect:/home/user/index";
 			}
 		catch(SQLException s) {
@@ -99,6 +117,7 @@ public class HomeController {
 			// TODO: handle exception
 			 // Catch any other unexpected exception
 	        model.addAttribute("errorMessage", e.getMessage());
+	        logger.info("Exception Occured...");
 	        return "register";
 		}
 

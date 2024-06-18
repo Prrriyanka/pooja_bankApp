@@ -2,6 +2,7 @@ package com.cg.beans;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,30 +24,30 @@ import jakarta.validation.constraints.Pattern;
 @Table(name = "bankApp_user")
 public class User {
 
-	
-	@Pattern(regexp = "^\\s*[a-zA-Z]+(['\\s-][a-zA-Z]+)*\\s*$", message = "Please enter a valid name with only letters")
-	private String fname;
-	
-	@Id
-	@Column(unique = true)
-	@NotBlank(message = "Please enter an email")
-	@Email(message = "Please provide a valid email address")
-	private String email;
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character")
-	private String password;
-	@Transient
-	private String cpassword;
-	private String role;
-	@Column(nullable = false)
-	@NotNull(message = "Date of Birth is required")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date DOB;
-	@NotBlank(message = "Please select a Gender")
-	private String gender;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<loan> loans;
-	
+		
+		@Pattern(regexp = "^\\s*[a-zA-Z]+(['\\s-][a-zA-Z]+)*\\s*$", message = "Please enter a valid name with only letters")
+		private String fname;
+		
+		@Id
+		@Column(unique = true)
+		@NotBlank(message = "Please enter an email")
+		@Email(message = "Please provide a valid email address")
+		private String email;
+		@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character")
+		private String password;
+		@Transient
+		private String cpassword;
+		private String role;
+		@Column(nullable = false)
+		@NotNull(message = "Date of Birth is required")
+		@DateTimeFormat(pattern = "yyyy-MM-dd")
+		private Date DOB;
+		@NotBlank(message = "Please select a Gender")
+		private String gender;
+		
+		@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	    private List<loan> loans;
+		
     
     
 	
@@ -130,6 +131,48 @@ public class User {
 		DOB = dOB;
 		this.gender = gender;
 		this.loans = loans;
+	}
+	
+	
+	public User(
+			@Pattern(regexp = "^\\s*[a-zA-Z]+(['\\s-][a-zA-Z]+)*\\s*$", message = "Please enter a valid name with only letters") String fname,
+			@NotBlank(message = "Please enter an email") @Email(message = "Please provide a valid email address") String email,
+			@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character") String password,
+			String role, @NotNull(message = "Date of Birth is required") Date dOB,
+			@NotBlank(message = "Please select a Gender") String gender, List<loan> loans) {
+		super();
+		this.fname = fname;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		DOB = dOB;
+		this.gender = gender;
+		this.loans = loans;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(DOB, email, fname, gender, loans, password, role);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(DOB, other.DOB) 
+				&& Objects.equals(email, other.email) 
+				&& Objects.equals(fname, other.fname)
+				&& Objects.equals(gender, other.gender) 
+				&& Objects.equals(loans, other.loans)
+				&& Objects.equals(password, other.password) 
+				&& Objects.equals(role, other.role);
+	}
+	@Override
+	public String toString() {
+		return "User [fname=" + fname + ", email=" + email + ", password=" + password +  ", role=" + role + ", DOB=" + DOB + ", gender=" + gender + ", loans=" + loans + "]";
 	}
 	
 	
